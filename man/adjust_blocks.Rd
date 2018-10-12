@@ -2,20 +2,20 @@
 % Please edit documentation in R/adjust_blocks.R
 \name{adjust_blocks}
 \alias{adjust_blocks}
-\title{Adjust synteny blocks to prevent spanning chromosomes and overlaps}
+\title{Adjust synteny blocks to prevent spanning across chromosomes and overlapping}
 \usage{
 adjust_blocks(map_list, mark_df, clust_df)
 }
 \arguments{
-\item{map_list}{a map list object}
+\item{map_list}{A map list object}
 
-\item{mark_df}{a marker dataframe}
+\item{mark_df}{A marker dataframe}
 
-\item{clust_df}{a cluster dataframe}
+\item{clust_df}{A cluster dataframe}
 }
 \value{
-an adjust map list object
+An adjusted map list object
 }
 \description{
-Adjust synteny blocks to prevent spanning chromosomes and overlaps
+Adjust synteny blocks to prevent spanning across chromosomes and overlapping
 }

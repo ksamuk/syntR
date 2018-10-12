@@ -21,13 +21,15 @@ use_data(ann_pet_map)
 # documentation
 document()
 
-# github
+# git/github
 
+use_git()
 # set up a new github personal access token
 # after the 'cat', restart Rstudio
-# browse_github_pat()
+browse_github_pat()
+edit_r_environ()
 #cat("GITHUB_PAT=[insert PAT here]\n", file = file.path(normalizePath("~/"), ".Renviron"), append = TRUE)
-use_github(protocol = "https")
+use_github()
 
 # load package
 load_all()

@@ -9,7 +9,19 @@ make_one_map(map, space_size = 20, order_chr1 = NULL,
   flip_chrs = NULL)
 }
 \arguments{
-\item{flip_chrs}{}
+\item{map}{A dataframe containing marker positions for two species}
+
+\item{space_size}{The amount of padding to add between chromosomes (in cM)}
+
+\item{order_chr1}{A specific order for the markers in species 1 (optional)}
+
+\item{order_chr2}{A specific order for the markers in species 2 (optional)}
+
+\item{max_length1}{The maximum length of each chromosome in species 1 (optional)}
+
+\item{max_length2}{The maximum length of each chromosome in species 2 (optional)}
+
+\item{flip_chrs}{A vector of chromosomes to flip in orientation (optional)}
 }
 \description{
 Collate two genetic maps into a single dataframe
