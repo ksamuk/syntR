@@ -1,8 +1,10 @@
 Package: syntR
 Title: Detection of synteny blocks via comparison of genetics maps
 Version: 1.0
-Authors@R: c(person("Katherine", "Ostevik", email = "first.last@example.com", role = c("aut", "cre")), person("Kieran", "Samuk", email = "first.last@example.com", role = c("aut")))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Katherine", "Ostevik", email = "kate.ostevik@gmail.com", role = c("aut", "cre")), 
+             person("Kieran", "Samuk", email = "ksamuk@gmail.com", role = c("aut"))
+            )
+Description: Detection of synteny blocks via comparison of genetics maps
 Depends: R (>= 3.5.0)
 License: MIT
 Encoding: UTF-8
