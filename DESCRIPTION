@@ -1,0 +1,16 @@
+Package: syntR
+Title: Detection of synteny blocks via comparison of genetics maps
+Version: 1.0
+Authors@R: c(person("Katherine", "Ostevik", email = "first.last@example.com", role = c("aut", "cre")), person("Kieran", "Samuk", email = "first.last@example.com", role = c("aut")))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.0)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: intervals,
+    MASS,
+    dplyr,
+    tidyr,
+    reshape2,
+    viridisLite
+RoxygenNote: 6.1.0
