@@ -28,7 +28,13 @@ use_data(ann_chr_length)
 #use_data(ann_chr_length)
 
 # documentation
+use_package_doc()
 document()
+
+# vignenette
+use_vignette("syntR_tutorial")
+build_vignettes()
+browseVignettes("syntR")
 
 # load package
 load_all()
