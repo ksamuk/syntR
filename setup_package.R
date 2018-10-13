@@ -5,9 +5,8 @@ library("usethis")
 library("roxygen2")
 
 # git/github
-use_git()
 # set up a new github personal access token
-# after the 'cat', restart Rstudio
+use_git()
 browse_github_pat() # interactive
 edit_r_environ() # interactive
 use_github()
@@ -28,6 +27,7 @@ use_data(ann_chr_length)
 #use_data(ann_chr_length)
 
 # documentation
+use_readme_rmd()
 use_package_doc()
 document()
 
