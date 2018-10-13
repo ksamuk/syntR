@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-syntR <img src="inst/figures/logo.png" align="right" style="width:120px;height:135px;" />
-=========================================================================================
+syntR <img src="inst/figures/logo.png" align="right" width="120" height="135" />
+================================================================================
 
 syntR is an R package for the reproducible detection and classification of synteny blocks via comparison of two genetic maps.
 
