@@ -3,7 +3,7 @@
 syntR <img src="inst/figures/logo.png" align="right" width="120" height="135" />
 ================================================================================
 
-syntR is an R package for the reproducible identification of synteny blocks/chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered and/or aligned genetic markers. 
+syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered and/or aligned genetic markers. 
 
 ***Note: syntR is currently in active development.***
 
