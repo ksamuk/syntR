@@ -12,11 +12,13 @@ edit_r_environ() # interactive
 use_github()
 
 # dependencies
-use_package("dplyr")
-use_package("tidyr")
-use_package("reshape2")
-use_package("intervals")
-use_package("viridisLite")
+use_package("dplyr", type = "Depends")
+use_package("magrittr", type = "Depends")
+use_package("tidyr", type = "Depends")
+use_package("reshape2", type = "Depends")
+use_package("intervals", type = "Depends")
+use_package("viridisLite", type = "Depends")
+usethis::use_pipe()
 
 # data
 ann_pet_map <- read.table("data/tutorial_data_ann_pet_comparison.txt", h = T)
