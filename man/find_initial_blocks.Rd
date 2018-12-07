@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_initial_blocks.R
 \name{find_initial_blocks}
 \alias{find_initial_blocks}
-\title{Perform initial clustering of genetic markers}
+\title{Title}
 \usage{
 find_initial_blocks(clust_df)
 }
@@ -10,5 +10,5 @@ find_initial_blocks(clust_df)
 \item{clust_df}{}
 }
 \description{
-Perform initial clustering of genetic markers
+Title
 }

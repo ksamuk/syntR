@@ -2,7 +2,7 @@
 % Please edit documentation in R/group_clusters.R
 \name{group_clusters}
 \alias{group_clusters}
-\title{Perform cluster re-grouping via the friends-of-friends approach}
+\title{Title}
 \usage{
 group_clusters(neighbour_list)
 }
@@ -10,5 +10,5 @@ group_clusters(neighbour_list)
 \item{neighbour_list}{}
 }
 \description{
-Perform cluster re-grouping via the friends-of-friends approach
+Title
 }

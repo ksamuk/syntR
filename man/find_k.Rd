@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_k.R
 \name{find_k}
 \alias{find_k}
-\title{Determine the appropriate number of markers to include in each initial cluster}
+\title{Title}
 \usage{
 find_k(clust, mark_df, max_cluster_range)
 }
@@ -10,5 +10,5 @@ find_k(clust, mark_df, max_cluster_range)
 \item{max_cluster_range}{}
 }
 \description{
-Determine the appropriate number of markers to include in each initial cluster
+Title
 }

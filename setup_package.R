@@ -22,7 +22,7 @@ use_package("viridisLite")
 ann_pet_map <- read.table("data/tutorial_data_ann_pet_comparison.txt", h = T)
 ann_chr_lengths <- read.table("data/tutorial_data_ann_chr_max.txt", h = T)
 use_data(ann_pet_map)
-use_data(ann_chr_length)
+use_data(ann_chr_lengths)
 #use_data(ann_chr_length)
 
 # documentation

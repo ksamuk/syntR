@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_parameters.R
 \name{test_parameters}
 \alias{test_parameters}
-\title{Test the performance of a range of tuning parameters}
+\title{Title}
 \usage{
 test_parameters(map_list, max_cluster_range_list, max_nn_dist_list,
   min_block_size = 2)
@@ -11,5 +11,5 @@ test_parameters(map_list, max_cluster_range_list, max_nn_dist_list,
 \item{min_block_size}{}
 }
 \description{
-Test the performance of a range of tuning parameters
+Title
 }

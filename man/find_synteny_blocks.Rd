@@ -2,14 +2,14 @@
 % Please edit documentation in R/find_synteny_blocks.R
 \name{find_synteny_blocks}
 \alias{find_synteny_blocks}
-\title{Indentify synteny blocks via comparison of two genetics maps}
+\title{Title}
 \usage{
-find_synteny_blocks(map_list, max_cluster_range, max_nn_dist = 15,
+find_synteny_blocks(map_list, max_cluster_range, max_nn_dist,
   min_block_size = 2, plots = FALSE)
 }
 \arguments{
 \item{plots}{}
 }
 \description{
-Indentify synteny blocks via comparison of two genetics maps
+Title
 }

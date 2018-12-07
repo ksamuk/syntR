@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_summary_stats.R
 \name{plot_summary_stats}
 \alias{plot_summary_stats}
-\title{Plot goodness-of-fit metrics for multiple parameter combination}
+\title{Title}
 \usage{
 plot_summary_stats(summary_stats, stats_to_plot)
 }
@@ -10,5 +10,5 @@ plot_summary_stats(summary_stats, stats_to_plot)
 \item{stats_to_plot}{}
 }
 \description{
-Plot goodness-of-fit metrics for multiple parameter combination
+Title
 }

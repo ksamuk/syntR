@@ -2,7 +2,7 @@
 % Please edit documentation in R/split_blocks.R
 \name{split_blocks}
 \alias{split_blocks}
-\title{Split synteny blocks that span chromosomal boundaries}
+\title{Title}
 \usage{
 split_blocks(block_target, cent_df, map_list)
 }
@@ -10,5 +10,5 @@ split_blocks(block_target, cent_df, map_list)
 \item{map_list}{}
 }
 \description{
-Split synteny blocks that span chromosomal boundaries
+Title
 }

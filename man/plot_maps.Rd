@@ -2,14 +2,14 @@
 % Please edit documentation in R/plot_maps.R
 \name{plot_maps}
 \alias{plot_maps}
-\title{Plot a two-dimension representation of two genetic maps}
+\title{Title}
 \usage{
-plot_maps(map_df, sp1_chrom_breaks, sp2_chrom_breaks, pch_val = 16,
+plot_maps(map_df, map1_chrom_breaks, map2_chrom_breaks, pch_val = 16,
   cex_val = 0.75, ...)
 }
 \arguments{
 \item{...}{}
 }
 \description{
-Plot a two-dimension representation of two genetic maps
+Title
 }

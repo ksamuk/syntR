@@ -2,7 +2,7 @@
 % Please edit documentation in R/build_neighbour_rank_lists.R
 \name{build_neighbour_rank_lists}
 \alias{build_neighbour_rank_lists}
-\title{Create lists of neighbours for each genetic marker on the basis of ranks}
+\title{Title}
 \usage{
 build_neighbour_rank_lists(query_cluster, rank_df)
 }
@@ -10,5 +10,5 @@ build_neighbour_rank_lists(query_cluster, rank_df)
 \item{rank_df}{}
 }
 \description{
-Create lists of neighbours for each genetic marker on the basis of ranks
+Title
 }

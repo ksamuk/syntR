@@ -2,27 +2,15 @@
 % Please edit documentation in R/make_one_map.R
 \name{make_one_map}
 \alias{make_one_map}
-\title{Collate two genetic maps into a single dataframe}
+\title{Title}
 \usage{
-make_one_map(map, space_size = 20, order_chr1 = NULL,
-  order_chr2 = NULL, max_length1 = NULL, max_length2 = NULL,
-  flip_chrs = NULL)
+make_one_map(map, space_size = 20, map1_chr_order = NULL,
+  map2_chr_order = NULL, map1_max_chr_lengths = NULL,
+  map2_max_chr_lengths = NULL, flip_chrs = NULL)
 }
 \arguments{
-\item{map}{A dataframe containing marker positions for two species}
-
-\item{space_size}{The amount of padding to add between chromosomes (in cM)}
-
-\item{order_chr1}{A specific order for the markers in species 1 (optional)}
-
-\item{order_chr2}{A specific order for the markers in species 2 (optional)}
-
-\item{max_length1}{The maximum length of each chromosome in species 1 (optional)}
-
-\item{max_length2}{The maximum length of each chromosome in species 2 (optional)}
-
-\item{flip_chrs}{A vector of chromosomes to flip in orientation (optional)}
+\item{flip_chrs}{}
 }
 \description{
-Collate two genetic maps into a single dataframe
+Title
 }
