@@ -1,6 +1,8 @@
 # prevent blocks from occuring across chromosomes
 # scan each block and check if a break (map_list[[2]] and map_list[[3]]) exists within it
-#' Split synteny blocks that span chromosomal boundaries
+# if a break exists, divide the block into two new blocks
+
+#' Title
 #'
 #' @param block_target
 #' @param cent_df
@@ -16,7 +18,7 @@ split_blocks <- function(block_target, cent_df, map_list){
     filter(block == block_target)
 
   # x positions
-  # are any breaks are in range of the block?
+  # are any breaks in that range of the block?
   x_breaks <- map_list[[2]][which(map_list[[2]] >= min(sub_df$centroid_x) & map_list[[2]] <= max(sub_df$centroid_x))]
   x_breaks <- sort(x_breaks)
 
@@ -30,7 +32,7 @@ split_blocks <- function(block_target, cent_df, map_list){
   }
 
   # repeat for y positions
-  # are any breaks are in range of the block?
+  # are any breaks in the range of the block?
   y_breaks <- map_list[[3]][which(map_list[[3]] >= min(sub_df$centroid_y) & map_list[[3]] <= max(sub_df$centroid_y))]
   y_breaks <- sort(y_breaks)
 

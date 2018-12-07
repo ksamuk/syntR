@@ -1,4 +1,4 @@
-#' Create lists of neighbours for each genetic marker on the basis of ranks
+#' Title
 #'
 #' @param query_cluster
 #' @param rank_df

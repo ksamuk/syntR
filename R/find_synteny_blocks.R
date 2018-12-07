@@ -1,4 +1,4 @@
-#' Indentify synteny blocks via comparison of two genetics maps
+#' Title
 #'
 #' @param map_list
 #' @param max_cluster_range
@@ -10,14 +10,15 @@
 #' @export
 #'
 #' @examples
-find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, min_block_size = 2, plots = FALSE) {
+find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist, min_block_size = 2, plots = FALSE) {
 
+  # pull out map and chromosome information
   map <- map_list[[1]]
-  sp1_chrom_breaks <- map_list[[2]]
-  sp2_chrom_breaks <- map_list[[3]]
+  map1_chrom_breaks <- map_list[[2]]
+  map2_chrom_breaks <- map_list[[3]]
 
   # define initial clusters
-  mark_df <- data.frame(sp1 = map$pos1full, sp2 = map$pos2full)
+  mark_df <- map %>% select(map1_posfull, map2_posfull)
   clust <- hclust(dist(mark_df))
 
   # choose k based on a max range in x or y for a cluster of markers
@@ -32,9 +33,8 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
 
     # plot the initial cluster assignments
     mark_df %>%
-      rename(pos1full = sp1, pos2full = sp2) %>%
-      left_join(map, ., by = c("pos1full", "pos2full")) %>%
-      plot_maps(sp1_chrom_breaks, sp2_chrom_breaks,
+      left_join(map, ., by = c("map1_posfull", "map2_posfull")) %>%
+      plot_maps(map1_chrom_breaks, map2_chrom_breaks,
                 col = cluster_cols[.$cluster], main = "Initial cluster assignments")
 
   }
@@ -42,7 +42,7 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
   # determine the centroids for each cluster
   clust_df <- mark_df %>%
     group_by(cluster) %>%
-    summarise(centroid_x = mean(sp1), centroid_y = mean(sp2))
+    summarise(centroid_x = mean(map1_posfull), centroid_y = mean(map2_posfull))
 
   # find nearest neighbour distances for each cluster
   dist_mat <- dist(data.frame(x = clust_df$centroid_x, y = clust_df$centroid_y), method = "maximum")
@@ -59,9 +59,8 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
 
     # first plot a blank version of mark df
     mark_df %>%
-      rename(pos1full = sp1, pos2full = sp2) %>%
-      left_join(map, ., by = c("pos1full", "pos2full")) %>%
-      plot_maps(sp1_chrom_breaks, sp2_chrom_breaks,
+      left_join(map, ., by = c("map1_posfull", "map2_posfull")) %>%
+      plot_maps(map1_chrom_breaks, map2_chrom_breaks,
                 col = 0, main = "Outlier clusters flagged for removal")
 
     # add in dropped/retained clusters
@@ -93,41 +92,46 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
   mark_df <- adjusted_block_list[[1]]
   synteny_blocks_df <- adjusted_block_list[[2]]
 
-  # find breakpoints in sp1
-  sp1_chrom_breaks <- map_list[[2]]
+  # find breakpoints in map1
+  map1_chrom_breaks <- map_list[[2]]
   synteny_blocks_df <- synteny_blocks_df %>% arrange(x_start)
-  sp1_breaks <- Intervals(cbind(head(synteny_blocks_df$x_end, -1), tail(synteny_blocks_df$x_start, -1)))
-  sp1_chrom_break_indices <- unlist(interval_overlap(sp1_chrom_breaks, sp1_breaks))
-  if (length(sp1_chrom_break_indices) == 0) { sp1_breaks <- as.data.frame(sp1_breaks) } else {
-    sp1_breaks <- as.data.frame(sp1_breaks[-sp1_chrom_break_indices,])
-  }
-  names(sp1_breaks) <- c("start", "end")
+  map1_breaks <- Intervals(cbind(head(synteny_blocks_df$x_end, -1), tail(synteny_blocks_df$x_start, -1)))
 
-  # find breakpoints in sp2
-  sp2_chrom_breaks <- map_list[[3]]
-  synteny_blocks_df <- synteny_blocks_df %>% arrange(y_start)
-  sp2_breaks <- Intervals(cbind(head(synteny_blocks_df$y_end, -1), tail(synteny_blocks_df$y_start, -1)))
-  sp2_chrom_break_indices <- unlist(interval_overlap(sp2_chrom_breaks, sp2_breaks))
-  if (length(sp2_chrom_break_indices) == 0) { sp2_breaks <- as.data.frame(sp2_breaks) } else {
-    sp2_breaks <- as.data.frame(sp2_breaks[-sp2_chrom_break_indices,])
+  # remove chromosome breaks from breaks list
+  map1_chrom_break_indices <- unlist(interval_overlap(map1_chrom_breaks, map1_breaks))
+  if (length(map1_chrom_break_indices) == 0) { map1_breaks <- as.data.frame(map1_breaks) } else {
+    map1_breaks <- as.data.frame(map1_breaks[-map1_chrom_break_indices,])
   }
-  names(sp2_breaks) <- c("start", "end")
+  names(map1_breaks) <- c("start", "end")
+
+  # find breakpoints in map2
+  map2_chrom_breaks <- map_list[[3]]
+  synteny_blocks_df <- synteny_blocks_df %>% arrange(y_start)
+  map2_breaks <- Intervals(cbind(head(synteny_blocks_df$y_end, -1), tail(synteny_blocks_df$y_start, -1)))
+
+  # remove chromosome breaks from breaks list
+  map2_chrom_break_indices <- unlist(interval_overlap(map2_chrom_breaks, map2_breaks))
+  if (length(map2_chrom_break_indices) == 0) { map2_breaks <- as.data.frame(map2_breaks) } else {
+    map2_breaks <- as.data.frame(map2_breaks[-map2_chrom_break_indices,])
+  }
+  names(map2_breaks) <- c("start", "end")
 
   # add original data and blocks to mark_df
   mark_df <- mark_df %>%
-    rename(pos1full = sp1, pos2full = sp2) %>%
-    left_join(map, ., by = c("pos1full", "pos2full"))
+    left_join(map, ., by = c("map1_posfull", "map2_posfull"))
 
-  # put synteny blocks onto individual chromosomes scale
-  synteny_blocks_df$sp1_chr_pos <- sapply(synteny_blocks_df$x_start, function(x) max(which(x >= sp1_chrom_breaks)))
-  synteny_blocks_df$chr1 <- sapply(synteny_blocks_df$sp1_chr_pos, function(x) map_list[[4]][x])
-  synteny_blocks_df$chr1_added <- sapply(synteny_blocks_df$sp1_chr_pos, function(x) sp1_chrom_breaks[x] + abs(sp1_chrom_breaks[1]))
-  synteny_blocks_df$sp2_chr_pos <- sapply(synteny_blocks_df$y_start, function(x) max(which(x >= sp2_chrom_breaks)))
-  synteny_blocks_df$chr2 <- sapply(synteny_blocks_df$sp2_chr_pos, function(x) map_list[[5]][x])
-  synteny_blocks_df$chr2_added <- sapply(synteny_blocks_df$sp2_chr_pos, function(x) sp2_chrom_breaks[x] + abs(sp1_chrom_breaks[1]))
+  # put synteny blocks onto individual chromosomes scale (i.e. reverse make_one_map)
+  synteny_blocks_df$map1_chr_index <- sapply(synteny_blocks_df$x_start, function(x) max(which(x >= map1_chrom_breaks)))
+  synteny_blocks_df$map1_chr <- sapply(synteny_blocks_df$map1_chr_index, function(x) map_list[[4]][x])
+  synteny_blocks_df$map1_added <- sapply(synteny_blocks_df$map1_chr_index, function(x) map1_chrom_breaks[x] + abs(map1_chrom_breaks[1]))
+
+  synteny_blocks_df$map2_chr_index <- sapply(synteny_blocks_df$y_start, function(x) max(which(x >= map2_chrom_breaks)))
+  synteny_blocks_df$map2_chr <- sapply(synteny_blocks_df$map2_chr_index, function(x) map_list[[5]][x])
+  synteny_blocks_df$map2_added <- sapply(synteny_blocks_df$map2_chr_index, function(x) map2_chrom_breaks[x] + abs(map1_chrom_breaks[1]))
+
   synteny_blocks_df <- synteny_blocks_df %>%
-    mutate(chr1_start = x_start - chr1_added, chr1_end = x_end - chr1_added, chr2_start = y_start - chr2_added, chr2_end = y_end - chr2_added) %>%
-    select(block, chr1, chr1_start, chr1_end, chr2, chr2_start, chr2_end)
+    mutate(map1_start = x_start - map1_added, map1_end = x_end - map1_added, map2_start = y_start - map2_added, map2_end = y_end - map2_added) %>%
+    select(block, map1_chr, map1_start, map1_end, map2_chr, map2_start, map2_end)
 
   # classify synteny blocks based on slope
 
@@ -135,9 +139,9 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
   # uses ranks to avoid problems with non-linear regions
   slope_df <- mark_df %>%
     group_by(block) %>%
-    mutate(pos1 = rank(pos1), pos2 = rank(pos2)) %>%
-    do(block_lm_slope = suppressWarnings(summary(lm(pos1 ~ pos2, data = ., na.action = "na.exclude")))$coefficients[,1][2],
-       block_lm_pval = suppressWarnings(summary(lm(pos1 ~ pos2, data = ., na.action = "na.exclude")))$coefficients[,4][2])  %>%
+    mutate(map1_pos = rank(map1_pos), map2_pos = rank(map2_pos)) %>%
+    do(block_lm_slope = suppressWarnings(summary(lm(map1_pos ~ map2_pos, data = ., na.action = "na.exclude")))$coefficients[,1][2],
+       block_lm_pval = suppressWarnings(summary(lm(map1_pos ~ map2_pos, data = ., na.action = "na.exclude")))$coefficients[,4][2])  %>%
     data.frame
 
   # categorize blocks by slope and pval
@@ -156,47 +160,40 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist = 15, m
   mark_df <- left_join(mark_df, slope_df, by = "final_block")
   synteny_blocks_df <- left_join(synteny_blocks_df, slope_df %>% rename(block = final_block) %>% mutate(block = as.factor(block)), by = "block")
 
-  # plot original synteny blocks (optional)
-  if (plots == TRUE){
-
-    block_cols <- c("#cccccc", sample(viridis(length(unique(mark_df$block)))))
-
-    mark_df %>%
-      mutate(block = ifelse(is.na(block), 0, block)) %>%
-      plot_maps(sp1_chrom_breaks, sp2_chrom_breaks,  col = block_cols[.$block + 1],
-                main = "Initial synteny block assignments", pch = 16,  cex_val = 0.75)
-
-  }
-
   # plot final synteny blocks (optional)
   if (plots == TRUE){
 
+
+    # the palatte creation function
+    get_col <- viridis::viridis_pal(alpha =1.0, begin = 0.15, end = 1.0, direction = 1, option = "D")
+    #get_col <- colorRampPalette(RColorBrewer::brewer.pal(11, "Spectral"))
+
+
+    # plot the final clusters, with colors determined per linakge group
     mark_df %>%
-      mutate(final_block = ifelse(is.na(final_block), 0, final_block)) %>%
-      plot_maps(sp1_chrom_breaks, sp2_chrom_breaks, col = block_cols[.$final_block + 1],
-                main = "Final synteny block assignments",  cex_val = 0.75)
+      group_by(map1_chr, map2_chr) %>%
+      mutate(n_groups = length(unique(final_block)) -1 ) %>%
+      mutate(block_col = factor(final_block, levels = unique(final_block[order(map1_pos)])) %>% as.numeric()) %>%
+      mutate(block_col = ifelse(is.na(final_block), "#cccccc", get_col(n_groups)[block_col])) %>%
+      ungroup %>%
+      plot_maps(map1_chrom_breaks, map2_chrom_breaks, col = .$block_col,
+                main = "Final synteny block assignments",  cex_val = 1)
+
+
 
   }
 
-  # plot final block orientations
-  if (plots == TRUE){
-
-    class_cols <- c("blue", "grey", "red", "black")
-
-    mark_df %>%
-      plot_maps(map_list[[2]], map_list[[3]], col = class_cols[as.numeric(as.factor(.$orientation))],
-                main = "Synteny block orientation",  cex_val = 0.75)
-
-  }
 
   # calculate summary stats
   summary_stats <- data.frame(num_blocks = nrow(synteny_blocks_df)) %>%
-    mutate(sp1_coverage = sum(synteny_blocks_df$chr1_end - synteny_blocks_df$chr1_start), sp2_coverage = sum(synteny_blocks_df$chr2_end - synteny_blocks_df$chr2_start))
+    mutate(map1_coverage = sum(synteny_blocks_df$map1_end - synteny_blocks_df$map1_start),
+           map2_coverage = sum(synteny_blocks_df$map2_end - synteny_blocks_df$map2_start))
+
   summary_stats$n_outliers <- sum(is.na(mark_df$final_block))
 
   # output final list
   data_frame_list <- list(marker_df = mark_df, synteny_blocks_df = synteny_blocks_df,
-                          sp1_breaks = sp1_breaks, sp2_breaks = sp2_breaks,
+                          map1_breaks = map1_breaks, map2_breaks = map2_breaks,
                           summary_stats = summary_stats)
 
   return(data_frame_list)

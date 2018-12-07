@@ -1,0 +1,7 @@
+map1_chr map1_max_chr_lengths
+Ann08 63.68
+Ann09 96.46
+Ann12 71.68
+Ann15 80.29
+Ann16 103.49
+Ann17 97.14

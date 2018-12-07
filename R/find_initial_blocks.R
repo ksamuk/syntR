@@ -1,4 +1,4 @@
-#' Perform initial clustering of genetic markers
+#' Title
 #'
 #' @param clust_df
 #'

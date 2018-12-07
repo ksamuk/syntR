@@ -1,4 +1,4 @@
-#' Perform cluster re-grouping via the friends-of-friends approach
+#' Title
 #'
 #' @param neighbour_list
 #'
@@ -7,6 +7,10 @@
 #'
 #' @examples
 group_clusters <- function(neighbour_list){
+
+  # this function finds groups of clusters based on their proximity to other clusters
+  # it works iteratively, adding nearby clusters and then looks for additional clusters near the new ones
+  # (using the "fifth element")
 
   group_list <- list()
 

@@ -1,4 +1,4 @@
-#' Plot goodness-of-fit metrics for multiple parameter combination
+#' Title
 #'
 #' @param summary_stats
 #' @param stats_to_plot
@@ -19,7 +19,6 @@ plot_summary_stats <- function(summary_stats, stats_to_plot) {
       data.matrix()
 
     image(dat_mat, col = cm.colors(256), xaxt = "n", yaxt = "n", xlab = "max_cluster_range", ylab = "max_nn_dist", main = stat_to_plot)
-
 
     max_cluster_range_list <- unique(summary_stats$max_cluster_range)
     max_nn_dist_list <- unique(summary_stats$max_nn_dist)

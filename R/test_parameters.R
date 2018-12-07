@@ -1,4 +1,4 @@
-#' Test the performance of a range of tuning parameters
+#' Title
 #'
 #' @param map_list
 #' @param max_cluster_range_list
@@ -11,6 +11,9 @@
 #' @examples
 test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, min_block_size = 2) {
 
+  # run find synteny blocks on each parameter combination and save the summary statistics
+
+  # initialize the data frame and lists
   block_out_summary <- setNames(data.frame(matrix(ncol = 6, nrow = 0)), c("max_cluster_range", "nn_dist", "num_blocks", "sp1_coverage", "sp2_coverage", "n_outliers"))
   x_breaks_list <- list()
   y_breaks_list <- list()
@@ -49,7 +52,7 @@ test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, 
   close(pb)
 
   normalize <- function(x){ (x - min(x)) / (max(x) - min(x)) }
-  block_out_summary <- mutate(block_out_summary, composite = normalize(sp1_coverage) + normalize(sp2_coverage) + 1 - normalize(n_outliers))
+  block_out_summary <- mutate(block_out_summary, composite = normalize(map1_coverage) + normalize(map2_coverage) + 1 - normalize(n_outliers))
 
   return(list(block_out_summary, breaks_list))
 

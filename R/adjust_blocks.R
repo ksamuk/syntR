@@ -1,10 +1,10 @@
-#' Adjust synteny blocks to prevent spanning across chromosomes and overlapping
+#' Title
 #'
-#' @param map_list A map list object
-#' @param mark_df A marker dataframe
-#' @param clust_df A cluster dataframe
+#' @param map_list
+#' @param mark_df
+#' @param clust_df
 #'
-#' @return An adjusted map list object
+#' @return
 #' @export
 #'
 #' @examples
@@ -32,10 +32,9 @@ adjust_blocks <- function(map_list, mark_df, clust_df){
   synteny_blocks_df <- mark_df %>%
     filter(!is.na(block)) %>%
     group_by(block) %>%
-    summarise(x_start = min(sp1), x_end = max(sp1), y_start = min(sp2), y_end = max(sp2))
+    summarise(x_start = min(map1_posfull), x_end = max(map1_posfull), y_start = min(map2_posfull), y_end = max(map2_posfull))
 
-  # drop completely subsumed blocks
-
+  # drop completely subsumed blocks (i.e. a small block that completely overlaps with a larger block)
   synteny_blocks_df$x_subsummed <- rep(NA, nrow(synteny_blocks_df))
   synteny_blocks_df$y_subsummed <- rep(NA, nrow(synteny_blocks_df))
 
@@ -90,8 +89,8 @@ adjust_blocks <- function(map_list, mark_df, clust_df){
 
   # remove markers from blocks that fall outside adjusted synteny blocks
   mark_df <- left_join(mark_df, synteny_blocks_df, by = "block") %>%
-    mutate(final_block = ifelse((sp1 < x_start | sp1 > x_end | sp2 < y_start | sp2 > y_end), NA, block)) %>%
-    select(sp1, sp2, cluster, block, final_block)
+    mutate(final_block = ifelse((map1_posfull < x_start | map1_posfull > x_end | map2_posfull < y_start | map2_posfull > y_end), NA, block)) %>%
+    select(map1_posfull, map2_posfull, cluster, block, final_block)
 
   out_list <- list(mark_df, synteny_blocks_df)
 
