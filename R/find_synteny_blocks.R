@@ -165,16 +165,14 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist, min_bl
 
 
     # the palatte creation function
-    get_col <- viridis::viridis_pal(alpha =1.0, begin = 0.15, end = 1.0, direction = 1, option = "D")
-    #get_col <- colorRampPalette(RColorBrewer::brewer.pal(11, "Spectral"))
-
+    get_col <- viridis::viridis_pal(alpha = 1.0, begin = 0.15, end = 1.0, direction = 1, option = "D")
 
     # plot the final clusters, with colors determined per linakge group
     mark_df %>%
       group_by(map1_chr, map2_chr) %>%
       mutate(n_groups = length(unique(final_block)) -1 ) %>%
       mutate(block_col = factor(final_block, levels = unique(final_block[order(map1_pos)])) %>% as.numeric()) %>%
-      mutate(block_col = ifelse(is.na(final_block), "#cccccc", get_col(n_groups)[block_col])) %>%
+      mutate(block_col = ifelse(is.na(final_block), "#cccccc", get_col(unique(n_groups))[block_col])) %>%
       ungroup %>%
       plot_maps(map1_chrom_breaks, map2_chrom_breaks, col = .$block_col,
                 main = "Final synteny block assignments",  cex_val = 1)
