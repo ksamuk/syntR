@@ -25,6 +25,7 @@ plot_summary_stats <- function(summary_stats, stats_to_plot) {
 
     axis(side = 1, at = seq(0, 1, 1/(length(max_cluster_range_list)-1)), labels = max_cluster_range_list)
     axis(side = 2, at = seq(0, 1, 1/(length(max_nn_dist_list)-1)), labels = max_nn_dist_list)
+    box()
 
     for (j in 1:nrow(dat_mat)) {
 

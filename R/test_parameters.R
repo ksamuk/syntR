@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, min_block_size = 2) {
+test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, min_block_size = 2, progress_bar = FALSE) {
 
   # run find synteny blocks on each parameter combination and save the summary statistics
 
@@ -19,9 +19,12 @@ test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, 
   y_breaks_list <- list()
 
   # set-up progress bar
-  progress <- 0
-  pb <- txtProgressBar(min = 0, max = length(max_cluster_range_list) * length(max_nn_dist_list), style = 3)
+  if(progress_bar){
 
+    progress <- 0
+    pb <- txtProgressBar(min = 0, max = length(max_cluster_range_list) * length(max_nn_dist_list), style = 3)
+
+  }
   # find synteny blocks for each parameter combination
   for (i in max_cluster_range_list) {
 
@@ -41,15 +44,19 @@ test_parameters <- function(map_list, max_cluster_range_list, max_nn_dist_list, 
 
       breaks_list <- list(x_breaks_list, y_breaks_list)
 
-      # update progess bar
-      progress <- progress + 1
-      setTxtProgressBar(pb, progress)
+      if(progress_bar){
+
+        # update progess bar
+        progress <- progress + 1
+        setTxtProgressBar(pb, progress)
+
+      }
 
     }
 
   }
 
-  close(pb)
+  if(progress_bar){close(pb)}
 
   normalize <- function(x){ (x - min(x)) / (max(x) - min(x)) }
   block_out_summary <- mutate(block_out_summary, composite = normalize(map1_coverage) + normalize(map2_coverage) + 1 - normalize(n_outliers))

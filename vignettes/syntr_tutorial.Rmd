@@ -19,15 +19,15 @@ knitr::opts_chunk$set(
 
 
 ```
-# What is syntR?
+## What is syntR?
 
 syntR is an R package for identifying synteny blocks shared between two genetic maps. The core algorithm implemented in the package focuses on identifying synteny blocks via comparison of marker orders (e.g. from maps of different species or populations). syntR identifies synteny blocks using a clustering algorithm tuned to the linear nature of genetic map data and generates an annotated list synteny block membership for each marker.
 
-# Requirements
+## Requirements
 
 syntR requires marker positions (chromosome and map position for each markers) from two genetic maps. The marker orders in the two maps need to be separately inferred for each map prior to using syntR. If you need to build you maps prior to using syntR, we reccomend looking into [R/qtl](http://www.rqtl.org/), [ASMap](https://cran.r-project.org/web/packages/ASMap/index.html), and [Lep-MAP](https://sourceforge.net/p/lep-map3/wiki/LM3%20Home/).
 
-# Input File
+## Input File
 
 The input file has six columns. Each row represents the map position of a single marker (e.g. a SNP, a microsatillite, etc.) in two different maps.
 
@@ -49,8 +49,12 @@ The columns contents are as follows:
 - **map2_chr**: The chromosome on which the marker resides in the second map 
 - **map2_pos**: The map position of the marker in the second map
 
-# Example Workflow
+
+
+## Example Workflow
 Below, we work through an example using genetic map data from two sunflower species. Note that some of the details and tuning parameters will require tailoring to your specific maps. Most of these can be inferred from properties of the map data (e.g. the error rates).
+
+
 
 ## 1. Load and format the map data
 
@@ -80,14 +84,21 @@ map_list <- make_one_map(ann_pet_map, map1_max_chr_lengths = ann_chr_lengths)
 
 ```
 
-## 2. Reordering and the map
 
+
+## 2. Reordering the map
+
+We can use `plot_maps()` to create a basic dot plot of our marker data:
 
 ```{r plot_map}
 # plot map
 plot_maps(map_df = map_list[[1]], map1_chrom_breaks = map_list[[2]], map2_chrom_breaks = map_list[[3]])
 
 ```
+
+The chromosomes are annotated with their species-specific names, an the chromosome breaks are indicated by vertical and horizontal lines.
+
+Notice that the maps look rather scattered. This is because the chromosomes are ordered arbitrarily (there is no inherent order to chromsomes). Top aid readability, we can reorder the order of chromosomes of species 2 to match the order in species 1 (plotted along the x-axis). We also rotate any "wholly-inverted" chromosomes so that they line up (at the chromosome scale) along the 1:1 line.
 
 ```{r reorder_map}
 # reorder and flip some chromosomes
@@ -98,89 +109,90 @@ plot_maps(map_df = map_list[[1]], map1_chrom_breaks = map_list[[2]], map2_chrom_
 
 ```
 
+This results in a more sane-looking dot plot. However, there are clearly some translocations (e.g. Pet12_16 x Ann16) that do not conform to the 1:1 line.
+
+
+
 ## 3. Determine optimal turning parameters 
 
-The key tuning parameters are max_cluster_range and, to a lesser extent, max_nn_dist. A simple method of finding the optimal combination of these two parameters is to simply fit a range of values and choose values that maximize coverage (% of the map assigned to synteny blocks) of the two maps.
+The key tuning parameters of the syntR algorirthm are `max_cluster_range` and, to a lesser extent, `max_nn_dist`. 
 
-We provide a method for achieving this below. Note it is slightly computationally intensive and may take several minutes to complete.
+A simple method of finding the optimal combination of these two parameters is to fit a range of values for both and choose values that maximize coverage (% of the map assigned to synteny blocks) of the two maps. 
+
+We provide an internal method for achieving this below. Note it is slightly computationally intensive and may take several minutes to complete.
+
+If you'd like to skip this step, the default values of max_cluster_range = 2 and max_nn_dist = 10 are likely well suited to most genetics maps.
 
 ```{r find_params, echo=FALSE}
 # find best parameter combination
 # run find_synteny_blocks with each parameter combination and collect summary statistics
+
 parameter_data <- test_parameters(map_list, max_cluster_range_list = seq(1, 5, by = 0.5), max_nn_dist_list = seq(10, 50, by = 10))
 plot_summary_stats(parameter_data[[1]], "composite")
 
-# 
-# based on pick max_cluster_range = 2 and max_nn_dist = 10
 
 ```
 
-We employ simple "elbow" heuristic is to choose the first coverage peak in the parameter matrix (going from low to high on both axes). Based on the above plot, we choose a max_cluster_range of 2 and a max_nn_dist of 10.
+We employ a simple "elbow" heuristic is to choose the *first* composite coverage "peak" in the parameter matrix. We've also found that `max_nn_dist` has an overall weak effect if your maps are fairly clean, and can result in odd behavior if increased beyond reasonable values. We reccomend focusing on `max_cluster_range`, and choosing the first peak that also minimized max_nn_dist. 
 
-# 4. Identify synteny blocks
+So, focusing on the first row (`max_nn_dist` = 10) below and moving from left to right, we select a `max_cluster_range` of 2 and a `max_nn_dist` of 10. 
+
+
+
+## 4. Identify synteny blocks
 
 With the two tuning parameters determined, we can run the primary function of syntR: `find_synteny_blocks()`. 
 
+This function runs a set of marker data (contained in the `map_list` object we created previously) through the syntR error-detection and synteny block identification algorithm described in the Ostevik et al. publication. 
+
+It can be run as follows:
+
 ```{r find_blocks}
 # find synteny blocks
-map_all_dfs <- find_synteny_blocks(map_list, max_cluster_range = 2, max_nn_dist = 10, plots = TRUE)
-map_all_dfs[[2]]
-map_all_dfs[[5]]
+synt_blocks <- find_synteny_blocks(map_list, max_cluster_range = 2, max_nn_dist = 10, plots = TRUE)
+
+```
+
+When `plots=TRUE`, the function generates three plots showing the progress of the algorithm. In the first plot, mapping error is smoothed via a pre-clustering step. Next, outliers are flagged and removed. Finally, synteny blocks are identified via the syntR friends-of-friends clustering algorithm.
+
+`find_synteny_blocks()` outputs a list object with containing five data frames:
+
+```{r find_blocks2}
+
+# print the contents of synt_blocks
+
+lapply(synt_blocks, as_tibble)
+
+```
+
+These elements are:
+
+1. `$marker_df` A data frame including the original list of markers along with their synteny block assignments.
+
+2. `$synteny_blocks_df` A data frame summarizing the span of each synteny block in each map (in map units) along with their inferred orientation (colinear, inverted, etc.) for synteny blocks with sufficient evidence of directionality.
+
+3. `$map1_breaks` A data frame listing the breakpoints between synteny blocks in map1.
+
+4. `$map2_breaks` A data frame listing the breakpoints between synteny blocks in map2.
+
+5. `$summary_stats` A data frame summarizing the results of the algorithm (coverage etc.)
+
+
+We can plot the blocks with their orientation as below:
+
+```{r find_blocks3}
 
 # plot synteny block orientations
-map_all_dfs[[1]] %>%
+synt_blocks[[1]] %>%
     plot_maps(map_list[[2]], map_list[[3]], col = c("blue", "grey", "red", "black")[as.numeric(as.factor(.$orientation))], 
               main = "Synteny block orientation",  cex_val = 0.75)
 
 ```
 
+In this case, blue = inverted, red = colinear and grey/black = unclassified.
 
-  
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+## Questions?
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+If you have any questions about syntR, please email one of the authors or post an issue on www.github.com/ksamuk/syntR.
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

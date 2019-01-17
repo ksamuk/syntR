@@ -1,19 +1,19 @@
 # setup pacakge
 
-
-
 library("devtools")
 library("usethis")
 library("roxygen2")
 
 # git/github
 # set up a new github personal access token
+
 use_git()
 browse_github_pat() # interactive
 edit_r_environ() # interactive
 use_github()
 
 # dependencies
+
 use_package("dplyr", type = "Depends")
 use_package("magrittr", type = "Depends")
 use_package("tidyr", type = "Depends")
