@@ -29,7 +29,7 @@ find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist, min_bl
   if (plots == TRUE){
 
     # create a (scrambled) list of colors for plotting clusters
-    cluster_cols <- sample(viridis(length(unique(mark_df$cluster))))
+    cluster_cols <- sample(viridis::viridis(length(unique(mark_df$cluster))))
 
     # plot the initial cluster assignments
     mark_df %>%

@@ -1,6 +1,5 @@
 Meta
-doc
-inst/doc
+*/.DS_Store
 # History files
 .Rhistory
 .Rapp.history
