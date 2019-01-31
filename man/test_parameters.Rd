@@ -5,7 +5,7 @@
 \title{Title}
 \usage{
 test_parameters(map_list, max_cluster_range_list, max_nn_dist_list,
-  min_block_size = 2)
+  min_block_size = 2, progress_bar = FALSE)
 }
 \arguments{
 \item{min_block_size}{}
