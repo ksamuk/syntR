@@ -13,6 +13,7 @@
 find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist, min_block_size = 2, plots = FALSE) {
 
   # pull out map and chromosome information
+  # testing git
   map <- map_list[[1]]
   map1_chrom_breaks <- map_list[[2]]
   map2_chrom_breaks <- map_list[[3]]
