@@ -28,8 +28,11 @@ data(ann_pet_map)
 as_tibble(ann_pet_map)
 
 # read in list of chromosome lengths for map1
-# this is an optional file that defines the 
-# maximum length of each chromosome (in cM) if this is known
+# this is an optional file that defines the maximum 
+# length of each chromosome (in cM) if this is known
+# NB: this is useful when the markers being compared 
+# do not cover the entire map
+
 data(ann_chr_lengths)
 ann_chr_lengths
 
@@ -52,7 +55,7 @@ map_list <- make_one_map(ann_pet_map, map1_max_chr_lengths = ann_chr_lengths, ma
 plot_maps(map_df = map_list[[1]], map1_chrom_breaks = map_list[[2]], map2_chrom_breaks = map_list[[3]])
 
 
-## ----find_params---------------------------------------------------------
+## ----find_params, warning=FALSE------------------------------------------
 # find best parameter combination
 # run find_synteny_blocks with each parameter combination and collect summary statistics
 

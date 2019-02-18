@@ -131,7 +131,7 @@ We provide an internal method for achieving this below. Note it is slightly comp
 
 If you'd like to skip this step, the default values of `max_cluster_range = 2` and `max_nn_dist = 10` are likely well suited to most genetics maps.
 
-```{r find_params}
+```{r find_params, warning=FALSE}
 # find best parameter combination
 # run find_synteny_blocks with each parameter combination and collect summary statistics
 

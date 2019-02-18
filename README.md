@@ -1,12 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-syntR <img src="https://github.com/ksamuk/syntR/blob/master/inst/figures/logo.png" align="right" width="120" height="135" />
-============================================================================================================================
+syntR <img src="https://raw.githubusercontent.com/ksamuk/syntR/master/inst/figures/logo.png" align="right" width="120" height="135" />
+======================================================================================================================================
 
 syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered genetic markers.
 
-Installation
-------------
+### Installation
 
 You can install syntR from github with:
 
@@ -15,8 +14,7 @@ install.packages("devtools")
 devtools::install_github("ksamuk/syntR")
 ```
 
-Example
--------
+### Example
 
 Find synteny blocks shared between *Helianthus petiolaris* and *Helianthus annus* (provided as example data):
 
@@ -37,13 +35,12 @@ synt_blocks <- find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 
 synt_blocks[[2]]
 ```
 
-Authors
--------
+### Authors
 
 [Katherine Ostevik](http://www.kateostevik.com/) and [Kieran Samuk](https://ksamuk.github.io/).
 
-\#\# See Also
--------------
+\#\#\# See Also
+---------------
 
 [GRIMM](http://grimm.ucsd.edu/GRIMM/) - A tool for analyzing rearrangements in pairs of genomes, including unichromosomal and multichromosomal genomes, and signed and unsigned data.
 
