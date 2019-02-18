@@ -3,7 +3,7 @@
 syntR <img src="inst/figures/logo.png" align="right" width="120" height="135" />
 ================================================================================
 
-syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered and/or aligned genetic markers. 
+syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered genetic markers. 
 
 ***Note: syntR is currently in active development.***
 
@@ -20,10 +20,23 @@ devtools::install_github("ksamuk/syntR")
 Example
 -------
 
-This is a basic example which shows you how to solve a common problem:
+Find synteny blocks shared between *Helianthus petiolaris* and *Helianthus annus* (provided as example data):
 
 ``` r
-## basic example code
+# load the syntR library
+library("syntR")
+
+# load data
+data(ann_pet_map)
+
+# convert data to a single ordered scale
+map_list <- make_one_map(ann_pet_map)
+
+# find synteny blocks
+synt_blocks <- find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 10, plots = TRUE)
+
+# print the resulting synteny blocks dataframe
+synt_blocks[[2]]]
 ```
 
 Authors
