@@ -30,4 +30,5 @@ rsconnect/
 .Rproj.user
 #set up script
 setup_package.R
+setup_site.R
 R/create_sticker.R

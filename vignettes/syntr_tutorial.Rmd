@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 ## What is syntR?
 
-syntR is an R package for identifying synteny blocks shared between two genetic maps. The core algorithm implemented in the package focuses on identifying synteny blocks via comparison of marker orders (e.g. from maps of different species or populations). syntR identifies synteny blocks using a clustering algorithm tuned to the linear nature of genetic map data and generates an annotated list synteny block membership for each marker.
+syntR is an R package for identifying synteny blocks shared between two genetic maps. The core algorithm implemented in the package focuses on identifying synteny blocks via comparison of marker orders (e.g. from genetic maps of different species or populations). syntR identifies synteny blocks using a clustering algorithm tuned to the linear nature of genetic map data and generates an annotated list synteny block membership for each marker. syntR does not identify segmental duplications.
 
 ## Requirements
 
@@ -52,8 +52,7 @@ The columns contents are as follows:
 
 
 ## Example Workflow
-Below, we work through an example using genetic map data from two sunflower species. Note that some of the details and tuning parameters will require tailoring to your specific maps. Most of these can be inferred from properties of the map data (e.g. the error rates).
-
+Below, we work through an example using genetic map data from two sunflower species. Note that some of the details and tuning parameters will require tailoring to your specific maps. 
 
 
 ## 1. Load and format the map data
@@ -72,8 +71,11 @@ data(ann_pet_map)
 as_tibble(ann_pet_map)
 
 # read in list of chromosome lengths for map1
-# this is an optional file that defines the 
-# maximum length of each chromosome (in cM) if this is known
+# this is an optional file that defines the maximum 
+# length of each chromosome (in cM) if this is known
+# NB: this is useful when the markers being compared 
+# do not cover the entire map
+
 data(ann_chr_lengths)
 ann_chr_lengths
 
@@ -84,6 +86,9 @@ map_list <- make_one_map(ann_pet_map, map1_max_chr_lengths = ann_chr_lengths)
 
 ```
 
+`make_one_map` outputs a list object containing three elements:
+- [[1]]: the marker data file with 2 additional ordering columns
+- [[2]] and [[3]]: the locations of the chromosome breaks between map 1 and map 2
 
 
 ## 2. Reordering the map
@@ -116,12 +121,15 @@ This results in a more sane-looking dot plot. However, there are clearly some tr
 ## 3. Determine optimal turning parameters 
 
 The key tuning parameters of the syntR algorirthm are `max_cluster_range` and, to a lesser extent, `max_nn_dist`. 
+`max_cluster_range` determines the maximum size of clusters of markers that will be collapsed to a singe point for further analysis. It defines the maximum distance that clustered markers can span. Lager values of `max_cluster_range` will result in more markers being collapsed into a single point.
+
+`max_nn_dist` determines which markers are considered outliers and removed from further analysis. Markers that do not have a neighbour within `max_nn_dist` are considered outliers. Larger values of `max_nn_dist` will result in fewer markers being removed.
 
 A simple method of finding the optimal combination of these two parameters is to fit a range of values for both and choose values that maximize coverage (% of the map assigned to synteny blocks) of the two maps and minimizes the number of outliers ("composite" in the plot below is a scaled sum of these metrics).
 
 We provide an internal method for achieving this below. Note it is slightly computationally intensive and may take several minutes to complete.
 
-If you'd like to skip this step, the default values of max_cluster_range = 2 and max_nn_dist = 10 are likely well suited to most genetics maps.
+If you'd like to skip this step, the default values of `max_cluster_range = 2` and `max_nn_dist = 10` are likely well suited to most genetics maps.
 
 ```{r find_params}
 # find best parameter combination
@@ -133,10 +141,9 @@ plot_summary_stats(parameter_data[[1]], "composite")
 
 ```
 
-We employ a simple "elbow" heuristic is to choose the *first* composite coverage "peak" in the parameter matrix. We've also found that `max_nn_dist` has an overall weak effect if your maps are fairly clean, and can result in odd behavior if increased beyond reasonable values. We reccomend focusing on `max_cluster_range`, and choosing the first peak that also minimized max_nn_dist. 
+We choose the first (from left to right) composite coverage “peak” in the parameter matrix (see Ostevik et al. for details about this choice).  
 
-So, focusing on the first row (`max_nn_dist` = 10) below and moving from left to right, we select a `max_cluster_range` of 2 and a `max_nn_dist` of 10. 
-
+So, in this case, we select a `max_cluster_range` of 2 and a `max_nn_dsit` of 10. 
 
 
 ## 4. Identify synteny blocks
