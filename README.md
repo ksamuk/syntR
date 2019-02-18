@@ -36,7 +36,7 @@ map_list <- make_one_map(ann_pet_map)
 synt_blocks <- find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 10, plots = TRUE)
 
 # print the resulting synteny blocks dataframe
-synt_blocks[[2]]]
+synt_blocks[[2]]
 ```
 
 Authors
