@@ -39,8 +39,7 @@ synt_blocks[[2]]
 
 [Katherine Ostevik](http://www.kateostevik.com/) and [Kieran Samuk](https://ksamuk.github.io/).
 
-\#\#\# See Also
----------------
+### See Also
 
 [GRIMM](http://grimm.ucsd.edu/GRIMM/) - A tool for analyzing rearrangements in pairs of genomes, including unichromosomal and multichromosomal genomes, and signed and unsigned data.
 
