@@ -76,21 +76,45 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="syntr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#syntr" class="anchor"></a>syntR <img src="../../../Dropbox%20(Duke%20Bio_Ea)/Projects/syntR/inst/figures/logo.png" align="right" width="120" height="135">
+<a href="#syntr" class="anchor"></a>syntR <img src="https://github.com/ksamuk/syntR/blob/master/inst/figures/logo.png" align="right" width="120" height="135">
 </h1></div>
-<p>syntR is an R package for the reproducible detection and classification of synteny blocks via comparison of two genetic maps.</p>
+<p>syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered genetic markers.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install syntR from github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ksamuk/syntR"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## basic example code</code></pre></div>
+<p>Find synteny blocks shared between <em>Helianthus petiolaris</em> and <em>Helianthus annus</em> (provided as example data):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the syntR library</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"syntR"</span>)
+
+<span class="co"># load data</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(ann_pet_map)
+
+<span class="co"># convert data to a single ordered scale</span>
+map_list &lt;-<span class="st"> </span><span class="kw"><a href="reference/make_one_map.html">make_one_map</a></span>(ann_pet_map)
+
+<span class="co"># find synteny blocks</span>
+synt_blocks &lt;-<span class="st"> </span><span class="kw"><a href="reference/find_synteny_blocks.html">find_synteny_blocks</a></span>(map_list, <span class="dt">max_clust_range =</span> <span class="dv">2</span>, <span class="dt">max_nn_dist =</span> <span class="dv">10</span>, <span class="dt">plots =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># print the resulting synteny blocks dataframe</span>
+synt_blocks[[<span class="dv">2</span>]]</code></pre></div>
+</div>
+<div id="authors" class="section level2">
+<h2 class="hasAnchor">
+<a href="#authors" class="anchor"></a>Authors</h2>
+<p><a href="http://www.kateostevik.com/">Katherine Ostevik</a> and <a href="https://ksamuk.github.io/">Kieran Samuk</a>.</p>
+</div>
+<div id="see-also" class="section level2">
+<h2 class="hasAnchor">
+<a href="#see-also" class="anchor"></a>## See Also</h2>
+<p><a href="http://grimm.ucsd.edu/GRIMM/">GRIMM</a> - A tool for analyzing rearrangements in pairs of genomes, including unichromosomal and multichromosomal genomes, and signed and unsigned data.</p>
+<p><a href="https://www.biorxiv.org/content/early/2018/05/26/330159">Flagel et al. 2018</a> - An example of a more formal model-based approach to a similar problem.</p>
 </div>
 </div>
   </div>
