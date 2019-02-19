@@ -1,0 +1,20 @@
+template:
+  params:
+    bootswatch: cosmo
+
+authors:
+  Kate Ostevik:
+    href: https://www.kateostevik.com/
+  Kieran Samuk:
+    href: http://ksamuk.gitub.io
+
+navbar:
+  title: "bayesplot"
+  left:
+    - text: "Tutorial"
+      href: articles/syntr_tutorial.html
+    - text: "Functions"
+      href: reference/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/ksamuk/syntR

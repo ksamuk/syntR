@@ -2,7 +2,7 @@ Package: syntR
 Title: Detection of synteny blocks via comparison of genetics maps
 Version: 1.0
 Authors@R: c(person("Kate", "Ostevik", email = "kate.ostevik@gmail.com", role = c("aut", "cre")), 
-             person("Kieran", "Samuk", email = "ksamuk@gmail.com", role = c("aut", "cre"))
+             person("Kieran", "Samuk", email = "ksamuk@gmail.com", role = c("aut"))
             )
 Description: Detection of synteny blocks via comparison of genetics maps
 Depends: 

@@ -27,7 +27,7 @@ syntR is an R package for identifying synteny blocks shared between two genetic 
 
 ## Requirements
 
-syntR requires marker positions (chromosome and map position for each markers) from two genetic maps. The marker orders in the two maps need to be separately inferred for each map prior to using syntR. If you need to build you maps prior to using syntR, we reccomend looking into [R/qtl](http://www.rqtl.org/), [ASMap](https://cran.r-project.org/web/packages/ASMap/index.html), and [Lep-MAP](https://sourceforge.net/p/lep-map3/wiki/LM3%20Home/).
+syntR requires marker positions (chromosome and map position for each marker) from two genetic maps. The marker orders in the two maps need to be separately inferred for each map prior to using syntR. If you need to build you maps prior to using syntR, we reccomend looking into [R/qtl](http://www.rqtl.org/), [ASMap](https://cran.r-project.org/web/packages/ASMap/index.html), and [Lep-MAP](https://sourceforge.net/p/lep-map3/wiki/LM3%20Home/).
 
 ## Input File
 

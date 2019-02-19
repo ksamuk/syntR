@@ -5,9 +5,13 @@ syntR <img src="https://raw.githubusercontent.com/ksamuk/syntR/master/inst/figur
 
 syntR is an R package for the reproducible identification of synteny blocks and chromosomal rearrangments via comparison of two genetic maps. syntR implements an error-aware clustering algorithm specifically designed for the highly linear structure of comparative genetic map data. syntR can be used to identify synteny blocks using any type of ordered genetic markers.
 
+### Documentation
+
+[The documentation and tutorial for syntR can be found here](https://ksamuk.github.io/syntR/index.html)
+
 ### Installation
 
-You can install syntR from github with:
+You can install syntR from Github with:
 
 ``` r
 install.packages("devtools")
