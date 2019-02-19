@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 
 
 ```
+<img src="https://raw.githubusercontent.com/ksamuk/syntR/master/inst/figures/logo.png" align="right" width="120" height="135" />
+
 ## What is syntR?
 
 syntR is an R package for identifying synteny blocks shared between two genetic maps. The core algorithm implemented in the package focuses on identifying synteny blocks via comparison of marker orders (e.g. from genetic maps of different species or populations). syntR identifies synteny blocks using a clustering algorithm tuned to the linear nature of genetic map data and generates an annotated list synteny block membership for each marker. syntR does not identify segmental duplications.

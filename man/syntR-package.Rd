@@ -9,12 +9,7 @@
 Detection of synteny blocks via comparison of genetics maps
 }
 \author{
-\strong{Maintainer}: Katherine Ostevik \email{kate.ostevik@gmail.com}
-
-Authors:
-\itemize{
-  \item Kieran Samuk \email{ksamuk@gmail.com}
-}
+\strong{Maintainer}: Kate Ostevik \email{kate.ostevik@gmail.com}
 
 }
 \keyword{internal}
