@@ -1,7 +1,7 @@
 .onAttach <- function(...) {
   ver <- utils::packageVersion("syntR")
-  packageStartupMessage("This is syntR version ", ver)
-  packageStartupMessage("* Online documentation and vignettes at https://ksamuk.github.io/syntR/index.html")
-  packageStartupMessage("* Please cite the following paper if you use syntR in your work: ")
-  packageStartupMessage("* [citation forthcoming] ")
+  cat(crayon::bold(crayon::cyan(paste0("Loaded syntR version ", ver, "!\n"))))
+  cat(crayon::green(paste0("* Online documentation and vignettes at https://ksamuk.github.io/syntR/index.html\n")))
+  cat(crayon::green(paste0("* Please cite the following paper if you use syntR in your work: \n")))
+  cat(crayon::italic(crayon::green(paste0("* [citation forthcoming] \n"))))
 }
