@@ -2,15 +2,30 @@
 % Please edit documentation in R/make_one_map.R
 \name{make_one_map}
 \alias{make_one_map}
-\title{Title}
+\title{Consolidate and prepare map data for synteny block detection}
 \usage{
 make_one_map(map, space_size = 20, map1_chr_order = NULL,
   map2_chr_order = NULL, map1_max_chr_lengths = NULL,
   map2_max_chr_lengths = NULL, flip_chrs = NULL)
 }
 \arguments{
-\item{flip_chrs}{}
+\item{map}{data frame, contains marker order and chromosome assignments for markers in both maps}
+
+\item{space_size}{numeric, the amount of space to pad markers between linkage groups}
+
+\item{map1_chr_order}{numeric, optional: the numeric order in which to display markers in map1}
+
+\item{map2_chr_order}{numeric, optional: the numeric order in which to display markers in map2}
+
+\item{map1_max_chr_lengths}{numeric, optional: values of the total lengths of each linkage group in map1. useful when markers do not span known extent of linkage groups.}
+
+\item{map2_max_chr_lengths}{numeric, optional: values of the total lengths of each linkage group in map2. useful when markers do not span known extent of linkage groups.}
+
+\item{flip_chrs}{logical, optional: a vector of TRUE/FALSE indicating which linkage groups should be flipped (for display purposes only)}
+}
+\value{
+a 'map list': a list of length 5 containing consolidated/flipped/reordered markers for both maps
 }
 \description{
-Title
+Consolidate and prepare map data for synteny block detection
 }

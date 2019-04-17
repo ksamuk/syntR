@@ -1,9 +1,9 @@
-#' Title
+#' Build list of cluster 'neighbourhoods' connected by proximity
 #'
-#' @param query_cluster
-#' @param rank_df
+#' @param query_cluster numeric/character, an identifier for the cluster being queried
+#' @param rank_df data frame containining marker ranks in both maps.
 #'
-#' @return
+#' @return a list containining the complete neighbourhood for the query cluster
 #' @export
 #'
 #' @examples

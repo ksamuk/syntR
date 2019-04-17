@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — build_neighbour_rank_lists • syntR</title>
+<title>Build list of cluster 'neighbourhoods' connected by proximity — build_neighbour_rank_lists • syntR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Title — build_neighbour_rank_lists" />
+<meta property="og:title" content="Build list of cluster 'neighbourhoods' connected by proximity — build_neighbour_rank_lists" />
 
-<meta property="og:description" content="Title" />
+<meta property="og:description" content="Build list of cluster 'neighbourhoods' connected by proximity" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -96,14 +96,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Build list of cluster 'neighbourhoods' connected by proximity</h1>
     
     <div class="hidden name"><code>build_neighbour_rank_lists.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Title</p>
+    <p>Build list of cluster 'neighbourhoods' connected by proximity</p>
     
     </div>
 
@@ -113,10 +113,18 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>query_cluster</th>
+      <td><p>numeric/character, an identifier for the cluster being queried</p></td>
+    </tr>
+    <tr>
       <th>rank_df</th>
-      <td></td>
+      <td><p>dataframe containining marker ranks in both maps.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a list containining the complete neighbourhood for the query cluster</p>
     
 
   </div>
@@ -124,7 +132,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

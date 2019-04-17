@@ -2,14 +2,35 @@
 % Please edit documentation in R/find_synteny_blocks.R
 \name{find_synteny_blocks}
 \alias{find_synteny_blocks}
-\title{Title}
+\title{Find shared synteny blocks by comparing two genetics maps}
 \usage{
 find_synteny_blocks(map_list, max_cluster_range, max_nn_dist,
   min_block_size = 2, plots = FALSE)
 }
 \arguments{
-\item{plots}{}
+\item{map_list}{list, a 'map_list' object created by make_one_map}
+
+\item{max_cluster_range}{numeric, the maximum distance between markers for them to be considered in the same cluster}
+
+\item{max_nn_dist}{numeric, the maximum distance for a singleton to be considered an outlier}
+
+\item{min_block_size}{numeric, the minimum size of a synteny block}
+
+\item{plots}{logical, should plots be included as output?}
+}
+\value{
+A list of length 3 containing synteny block assignments for each marker
 }
 \description{
-Title
+Find shared synteny blocks by comparing two genetics maps
+}
+\examples{
+# load data
+data(ann_pet_map)
+
+# convert data to a single ordered scale
+map_list <- make_one_map(ann_pet_map)
+
+# find synteny blocks
+synt_blocks <- find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 10, plots = TRUE)
 }

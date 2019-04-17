@@ -1,15 +1,24 @@
-#' Title
+#' Find shared synteny blocks by comparing two genetics maps
 #'
-#' @param map_list
-#' @param max_cluster_range
-#' @param max_nn_dist
-#' @param min_block_size
-#' @param plots
+#' @param map_list list, a 'map_list' object created by make_one_map
+#' @param max_cluster_range numeric, the maximum distance between markers for them to be considered in the same cluster
+#' @param max_nn_dist numeric, the maximum distance for a singleton to be considered an outlier
+#' @param min_block_size numeric, the minimum size of a synteny block
+#' @param plots logical, should plots be included as output?
 #'
-#' @return
+#' @return A list of length 3 containing synteny block assignments for each marker
 #' @export
 #'
 #' @examples
+#' # load data
+#' data(ann_pet_map)
+#'
+#' # convert data to a single ordered scale
+#' map_list <- make_one_map(ann_pet_map)
+#'
+#' # find synteny blocks
+#' synt_blocks <- find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 10, plots = TRUE)
+
 find_synteny_blocks <- function(map_list, max_cluster_range, max_nn_dist, min_block_size = 2, plots = FALSE) {
 
   # pull out map and chromosome information

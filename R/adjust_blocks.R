@@ -1,13 +1,15 @@
-#' Title
+#' Adjust synteny blocks based on chromosome breaks
 #'
-#' @param map_list
-#' @param mark_df
-#' @param clust_df
+#' @param map_list list, a 'map_list' object created by make_one_map
+#' @param mark_df data frame, the first element of the list created by find_synteny_blocks
+#' @param clust_df data frame, the second element of the list created by find_synteny_blocks
 #'
-#' @return
+#' @return a list of length 2 containing adjusted synteny blocks
 #' @export
 #'
 #' @examples
+#'
+#'
 adjust_blocks <- function(map_list, mark_df, clust_df){
 
   # split blocks based on chromosome breaks

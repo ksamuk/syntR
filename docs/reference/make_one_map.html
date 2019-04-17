@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — make_one_map • syntR</title>
+<title>Consolidate and prepare map data for synteny block detection — make_one_map • syntR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Title — make_one_map" />
+<meta property="og:title" content="Consolidate and prepare map data for synteny block detection — make_one_map" />
 
-<meta property="og:description" content="Title" />
+<meta property="og:description" content="Consolidate and prepare map data for synteny block detection" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -96,14 +96,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Consolidate and prepare map data for synteny block detection</h1>
     
     <div class="hidden name"><code>make_one_map.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Title</p>
+    <p>Consolidate and prepare map data for synteny block detection</p>
     
     </div>
 
@@ -115,10 +115,38 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>map</th>
+      <td><p>dataframe, contains marker order and chromosome assignments for markers in both maps</p></td>
+    </tr>
+    <tr>
+      <th>space_size</th>
+      <td><p>numeric, the amount of space to pad markers between linkage groups</p></td>
+    </tr>
+    <tr>
+      <th>map1_chr_order</th>
+      <td><p>numeric, optional: the numeric order in which to display markers in map1</p></td>
+    </tr>
+    <tr>
+      <th>map2_chr_order</th>
+      <td><p>numeric, optional: the numeric order in which to display markers in map2</p></td>
+    </tr>
+    <tr>
+      <th>map1_max_chr_lengths</th>
+      <td><p>numeric, optional: values of the total lengths of each linkage group in map1. useful when markers do not span known extent of linkage groups.</p></td>
+    </tr>
+    <tr>
+      <th>map2_max_chr_lengths</th>
+      <td><p>numeric, optional: values of the total lengths of each linkage group in map2. useful when markers do not span known extent of linkage groups.</p></td>
+    </tr>
+    <tr>
       <th>flip_chrs</th>
-      <td></td>
+      <td><p>logical, optional: a vector of TRUE/FALSE indicating which linkage groups should be flipped (for display purposes only)</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a 'map list': a list of length 5 containing consolidated/flipped/reordered markers for both maps</p>
     
 
   </div>
@@ -126,7 +154,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

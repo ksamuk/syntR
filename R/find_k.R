@@ -1,10 +1,10 @@
-#' Title
+#' Find the optimal number of synteny blocks (i.e. k)
 #'
 #' @param clust
-#' @param mark_df
-#' @param max_cluster_range
+#' @param mark_df data frame, a dataframe of markers, e.g. the first element of a map_list object
+#' @param max_cluster_range numeric of length 1, the maximum genetic distance a single cluster of markers can span
 #'
-#' @return
+#' @return a numeri
 #' @export
 #'
 #' @examples
@@ -25,7 +25,7 @@ find_k <- function(clust, mark_df, max_cluster_range) {
   }
 
   # find the maximum cluster range for k values that span the number of markers in the maps and
-  # identify the smallest k value that yeilds a cluster range that is below the maximum cut-off set by max_cluster_range
+  # identify the smallest k value that yields a cluster range that is below the maximum cut-off set by max_cluster_range
   # (small k values means more markers in each cluster)
   # this is done iteratively, starting with k values that are far apart
   # if there are many markers (>1000), the initially tested k values start even farther apart

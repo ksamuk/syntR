@@ -80,27 +80,27 @@
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
 <p>You can install syntR from Github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ksamuk/syntR"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ksamuk/syntR"</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Find synteny blocks shared between <em>Helianthus petiolaris</em> and <em>Helianthus annus</em> (provided as example data):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the syntR library</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"syntR"</span>)
-
-<span class="co"># load data</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(ann_pet_map)
-
-<span class="co"># convert data to a single ordered scale</span>
-map_list &lt;-<span class="st"> </span><span class="kw"><a href="reference/make_one_map.html">make_one_map</a></span>(ann_pet_map)
-
-<span class="co"># find synteny blocks</span>
-synt_blocks &lt;-<span class="st"> </span><span class="kw"><a href="reference/find_synteny_blocks.html">find_synteny_blocks</a></span>(map_list, <span class="dt">max_clust_range =</span> <span class="dv">2</span>, <span class="dt">max_nn_dist =</span> <span class="dv">10</span>, <span class="dt">plots =</span> <span class="ot">TRUE</span>)
-
-<span class="co"># print the resulting synteny blocks dataframe</span>
-synt_blocks[[<span class="dv">2</span>]]</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># load the syntR library</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"syntR"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># load data</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(ann_pet_map)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># convert data to a single ordered scale</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">map_list &lt;-<span class="st"> </span><span class="kw"><a href="reference/make_one_map.html">make_one_map</a></span>(ann_pet_map)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># find synteny blocks</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">synt_blocks &lt;-<span class="st"> </span><span class="kw"><a href="reference/find_synteny_blocks.html">find_synteny_blocks</a></span>(map_list, <span class="dt">max_clust_range =</span> <span class="dv">2</span>, <span class="dt">max_nn_dist =</span> <span class="dv">10</span>, <span class="dt">plots =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># print the resulting synteny blocks dataframe</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">synt_blocks[[<span class="dv">2</span>]]</a></code></pre></div>
 </div>
 <div id="authors" class="section level3">
 <h3 class="hasAnchor">
@@ -111,7 +111,7 @@ synt_blocks[[<span class="dv">2</span>]]</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#see-also" class="anchor"></a>See Also</h3>
 <p><a href="http://grimm.ucsd.edu/GRIMM/">GRIMM</a> - A tool for analyzing rearrangements in pairs of genomes, including unichromosomal and multichromosomal genomes, and signed and unsigned data.</p>
-<p><a href="https://www.biorxiv.org/content/early/2018/05/26/330159">Flagel et al. 2018</a> - An example of a more formal model-based approach to a similar problem.</p>
+<p><a href="https://www.biorxiv.org/content/early/2018/05/26/330159">Flagel et al. 2018</a> - An example of a more formal model-based approach to a similar problem.</p>
 </div>
 </div>
   </div>

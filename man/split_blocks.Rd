@@ -2,13 +2,20 @@
 % Please edit documentation in R/split_blocks.R
 \name{split_blocks}
 \alias{split_blocks}
-\title{Title}
+\title{Split and reorder synteny blocks}
 \usage{
 split_blocks(block_target, cent_df, map_list)
 }
 \arguments{
-\item{map_list}{}
+\item{block_target}{character, an id for a synteny block to scan for breaks}
+
+\item{cent_df}{data frame, the centroid clustered markers in both maps}
+
+\item{map_list}{list, the map_list object created by find_synteny_blocks}
+}
+\value{
+a dataframe (sub_df) containing adjusted synteny block assignements for the target block
 }
 \description{
-Title
+Split and reorder synteny blocks
 }

@@ -2,13 +2,16 @@
 % Please edit documentation in R/find_initial_blocks.R
 \name{find_initial_blocks}
 \alias{find_initial_blocks}
-\title{Title}
+\title{Peform initial hierarchical clustering of markers}
 \usage{
 find_initial_blocks(clust_df)
 }
 \arguments{
-\item{clust_df}{}
+\item{clust_df}{data frame containining the initial markers for both genetic maps}
+}
+\value{
+dataframe containing cluster assignments for each marker
 }
 \description{
-Title
+Peform initial hierarchical clustering of markers
 }

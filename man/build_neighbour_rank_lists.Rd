@@ -2,13 +2,18 @@
 % Please edit documentation in R/build_neighbour_rank_lists.R
 \name{build_neighbour_rank_lists}
 \alias{build_neighbour_rank_lists}
-\title{Title}
+\title{Build list of cluster 'neighbourhoods' connected by proximity}
 \usage{
 build_neighbour_rank_lists(query_cluster, rank_df)
 }
 \arguments{
-\item{rank_df}{}
+\item{query_cluster}{numeric/character, an identifier for the cluster being queried}
+
+\item{rank_df}{data frame containining marker ranks in both maps.}
+}
+\value{
+a list containining the complete neighbourhood for the query cluster
 }
 \description{
-Title
+Build list of cluster 'neighbourhoods' connected by proximity
 }

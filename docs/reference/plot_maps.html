@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — plot_maps • syntR</title>
+<title>Plot markers in two genetic maps — plot_maps • syntR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Title — plot_maps" />
+<meta property="og:title" content="Plot markers in two genetic maps — plot_maps" />
 
-<meta property="og:description" content="Title" />
+<meta property="og:description" content="Plot markers in two genetic maps" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -96,14 +96,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Plot markers in two genetic maps</h1>
     
     <div class="hidden name"><code>plot_maps.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Title</p>
+    <p>Plot markers in two genetic maps</p>
     
     </div>
 
@@ -114,10 +114,34 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>map_df</th>
+      <td><p>dataframe, contains marker position in both maps</p></td>
+    </tr>
+    <tr>
+      <th>map1_chrom_breaks</th>
+      <td><p>numeric, a vector indicating the position of chromosome breaks in map1</p></td>
+    </tr>
+    <tr>
+      <th>map2_chrom_breaks</th>
+      <td><p>numeric, a vector indicating the position of chromosome breaks in map2</p></td>
+    </tr>
+    <tr>
+      <th>pch_val</th>
+      <td><p>numeric, behaves like the 'pch' parameter of plot()</p></td>
+    </tr>
+    <tr>
+      <th>cex_val</th>
+      <td><p>numeric, behaves like the 'cex' parameter of plot()</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a dotplot of marker positions in both genetic maps</p>
     
 
   </div>
@@ -125,7 +149,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

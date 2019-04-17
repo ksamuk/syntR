@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — find_synteny_blocks • syntR</title>
+<title>Find shared synteny blocks by comparing two genetics maps — find_synteny_blocks • syntR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Title — find_synteny_blocks" />
+<meta property="og:title" content="Find shared synteny blocks by comparing two genetics maps — find_synteny_blocks" />
 
-<meta property="og:description" content="Title" />
+<meta property="og:description" content="Find shared synteny blocks by comparing two genetics maps" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -96,14 +96,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Find shared synteny blocks by comparing two genetics maps</h1>
     
     <div class="hidden name"><code>find_synteny_blocks.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Title</p>
+    <p>Find shared synteny blocks by comparing two genetics maps</p>
     
     </div>
 
@@ -114,18 +114,51 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>map_list</th>
+      <td><p>list, a 'map_list' object created by make_one_map</p></td>
+    </tr>
+    <tr>
+      <th>max_cluster_range</th>
+      <td><p>numeric, the maximum distance between markers for them to be considered in the same cluster</p></td>
+    </tr>
+    <tr>
+      <th>max_nn_dist</th>
+      <td><p>numeric, the maximum distance for a singleton to be considered an outlier</p></td>
+    </tr>
+    <tr>
+      <th>min_block_size</th>
+      <td><p>numeric, the minimum size of a synteny block</p></td>
+    </tr>
+    <tr>
       <th>plots</th>
-      <td></td>
+      <td><p>logical, should plots be included as output?</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A list of length 3 containing synteny block assignments for each marker</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>ann_pet_map</span>)
+
+<span class='co'># convert data to a single ordered scale</span>
+<span class='no'>map_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_one_map.html'>make_one_map</a></span>(<span class='no'>ann_pet_map</span>)
+
+<span class='co'># find synteny blocks</span>
+<span class='no'>synt_blocks</span> <span class='kw'>&lt;-</span> <span class='fu'>find_synteny_blocks</span>(<span class='no'>map_list</span>, <span class='kw'>max_clust_range</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>max_nn_dist</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>plots</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in find_synteny_blocks(map_list, max_clust_range = 2, max_nn_dist = 10,     plots = TRUE): unused argument (max_clust_range = 2)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

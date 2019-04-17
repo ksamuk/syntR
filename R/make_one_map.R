@@ -1,18 +1,14 @@
-# map is a dataframe with the columns map1_name, map1_chr, map1_pos, map2_name, map2_chr, map2_pos
-# map1 will be on the x-axis
-# space_size is the amount of space to be added between chromosomes (20 cM default)
-
-#' Title
+#' Consolidate and prepare map data for synteny block detection
 #'
-#' @param map
-#' @param space_size
-#' @param map1_chr_order
-#' @param map2_chr_order
-#' @param map1_max_chr_lengths
-#' @param map2_max_chr_lengths
-#' @param flip_chrs
+#' @param map data frame, contains marker order and chromosome assignments for markers in both maps
+#' @param space_size numeric, the amount of space to pad markers between linkage groups
+#' @param map1_chr_order numeric, optional: the numeric order in which to display markers in map1
+#' @param map2_chr_order numeric, optional: the numeric order in which to display markers in map2
+#' @param map1_max_chr_lengths numeric, optional: values of the total lengths of each linkage group in map1. useful when markers do not span known extent of linkage groups.
+#' @param map2_max_chr_lengths numeric, optional: values of the total lengths of each linkage group in map2. useful when markers do not span known extent of linkage groups.
+#' @param flip_chrs logical, optional: a vector of TRUE/FALSE indicating which linkage groups should be flipped (for display purposes only)
 #'
-#' @return
+#' @return a 'map list': a list of length 5 containing consolidated/flipped/reordered markers for both maps
 #' @export
 #'
 #' @examples

@@ -1,8 +1,8 @@
-#' Title
+#' Peform initial hierarchical clustering of markers
 #'
-#' @param clust_df
+#' @param clust_df data frame containining the initial markers for both genetic maps
 #'
-#' @return
+#' @return dataframe containing cluster assignments for each marker
 #' @export
 #'
 #' @examples

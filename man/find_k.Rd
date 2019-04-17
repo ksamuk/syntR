@@ -2,13 +2,18 @@
 % Please edit documentation in R/find_k.R
 \name{find_k}
 \alias{find_k}
-\title{Title}
+\title{Find the optimal number of synteny blocks (i.e. k)}
 \usage{
 find_k(clust, mark_df, max_cluster_range)
 }
 \arguments{
-\item{max_cluster_range}{}
+\item{mark_df}{data frame, a dataframe of markers, e.g. the first element of a map_list object}
+
+\item{max_cluster_range}{numeric of length 1, the maximum genetic distance a single cluster of markers can span}
+}
+\value{
+a numeri
 }
 \description{
-Title
+Find the optimal number of synteny blocks (i.e. k)
 }

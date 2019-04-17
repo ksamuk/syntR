@@ -2,14 +2,27 @@
 % Please edit documentation in R/plot_maps.R
 \name{plot_maps}
 \alias{plot_maps}
-\title{Title}
+\title{Plot markers in two genetic maps}
 \usage{
 plot_maps(map_df, map1_chrom_breaks, map2_chrom_breaks, pch_val = 16,
   cex_val = 0.75, ...)
 }
 \arguments{
+\item{map_df}{data frame, contains marker position in both maps}
+
+\item{map1_chrom_breaks}{numeric, a vector indicating the position of chromosome breaks in map1}
+
+\item{map2_chrom_breaks}{numeric, a vector indicating the position of chromosome breaks in map2}
+
+\item{pch_val}{numeric, behaves like the 'pch' parameter of plot()}
+
+\item{cex_val}{numeric, behaves like the 'cex' parameter of plot()}
+
 \item{...}{}
 }
+\value{
+a dotplot of marker positions in both genetic maps
+}
 \description{
-Title
+Plot markers in two genetic maps
 }

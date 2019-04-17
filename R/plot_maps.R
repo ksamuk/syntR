@@ -1,13 +1,13 @@
-#' Title
+#' Plot markers in two genetic maps
 #'
-#' @param map_df
-#' @param map1_chrom_breaks
-#' @param map2_chrom_breaks
-#' @param pch_val
-#' @param cex_val
+#' @param map_df data frame, contains marker position in both maps
+#' @param map1_chrom_breaks numeric, a vector indicating the position of chromosome breaks in map1
+#' @param map2_chrom_breaks numeric, a vector indicating the position of chromosome breaks in map2
+#' @param pch_val numeric, behaves like the 'pch' parameter of plot()
+#' @param cex_val numeric, behaves like the 'cex' parameter of plot()
 #' @param ...
 #'
-#' @return
+#' @return a dotplot of marker positions in both genetic maps
 #' @export
 #'
 #' @examples

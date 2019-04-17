@@ -1,18 +1,18 @@
-# prevent blocks from occuring across chromosomes
-# scan each block and check if a break (map_list[[2]] and map_list[[3]]) exists within it
-# if a break exists, divide the block into two new blocks
-
-#' Title
+#' Split and reorder synteny blocks
 #'
-#' @param block_target
-#' @param cent_df
-#' @param map_list
+#' @param block_target character, an id for a synteny block to scan for breaks
+#' @param cent_df data frame, the centroid clustered markers in both maps
+#' @param map_list list, the map_list object created by find_synteny_blocks
 #'
-#' @return
+#' @return a dataframe (sub_df) containing adjusted synteny block assignements for the target block
 #' @export
 #'
 #' @examples
 split_blocks <- function(block_target, cent_df, map_list){
+
+  # prevent blocks from occuring across chromosomes
+  # scan each block and check if a break (map_list[[2]] and map_list[[3]]) exists within it
+  # if a break exists, divide the block into two new blocks
 
   sub_df <- cent_df %>%
     filter(block == block_target)

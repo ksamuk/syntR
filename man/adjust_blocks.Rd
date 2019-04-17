@@ -2,13 +2,24 @@
 % Please edit documentation in R/adjust_blocks.R
 \name{adjust_blocks}
 \alias{adjust_blocks}
-\title{Title}
+\title{Adjust synteny blocks based on chromosome breaks}
 \usage{
 adjust_blocks(map_list, mark_df, clust_df)
 }
 \arguments{
-\item{clust_df}{}
+\item{map_list}{list, a 'map_list' object created by make_one_map}
+
+\item{mark_df}{data frame, the first element of the list created by find_synteny_blocks}
+
+\item{clust_df}{data frame, the second element of the list created by find_synteny_blocks}
+}
+\value{
+a list of length 2 containing adjusted synteny blocks
 }
 \description{
-Title
+Adjust synteny blocks based on chromosome breaks
+}
+\examples{
+
+
 }
