@@ -14,8 +14,8 @@ syntR is an R package for the reproducible identification of synteny blocks and 
 You can install syntR from Github with:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("ksamuk/syntR")
+install.packages("remotes")
+remotes::install_github("ksamuk/syntR")
 ```
 
 ### Example
